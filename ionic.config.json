@@ -1,0 +1,7 @@
+{
+  "name": "xpdf",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
