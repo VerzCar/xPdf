@@ -1,17 +1,19 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="openPDF()" disabled="{{isLoading}}">
+        <ion-icon [ngClass]="isLoading ? 'animate-spin h-5 w-5 mr-3' : ''" slot="start"
+                  name="{{isLoading ? 'reload-outline' : 'print-outline'}}"></ion-icon>
+        Create Pdf
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <div id="pdfBlock" #pdfBlock>
+    <app-blueprint-landing-page pageTitle="pdfKit"></app-blueprint-landing-page>
+  </div>
+
 </ion-content>
