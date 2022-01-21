@@ -3,7 +3,6 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
-
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -56,7 +55,7 @@ export class Tab1Page {
           blockHeight);
       }
 
-      doc.save('jsPdf.pdf');
+      doc.save('jsPdf-as-image.pdf');
 
     } catch (error) {
       console.error(error);
@@ -65,4 +64,41 @@ export class Tab1Page {
     this.isLoading = false;
 
   };
+
+  async createHtmlPdf(): Promise<void> {
+    this.isLoading = true;
+
+    const pdfBlockElement = document.getElementById('pdfBlock');
+    const blockWidth = pdfBlockElement.clientWidth;
+    const pdfWidth = blockWidth + (15 * 2);
+    const pdfHeight = (pdfWidth * 1.5) + (15 * 2);
+
+    try {
+      const doc = new jsPDF({
+        orientation: 'p',
+        unit: 'mm',
+        format: [pdfWidth, pdfHeight],
+        putOnlyUsedFonts: true,
+      });
+
+      await doc.html(
+        pdfBlockElement,
+        {
+          x: 15,
+          y: 15,
+          html2canvas: {
+            useCORS: true
+          },
+          callback: jsPdfDoc => {
+            jsPdfDoc.save('jsPdf-from-html.pdf');
+          },
+        });
+
+    } catch (error) {
+      console.error(error);
+    }
+
+    this.isLoading = false;
+  };
+
 }

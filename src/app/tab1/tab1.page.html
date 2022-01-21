@@ -1,10 +1,15 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="primary">
-      <ion-button (click)="createPDF()" disabled="{{isLoading}}">
+      <ion-button color="primary" (click)="createPDF()" disabled="{{isLoading}}">
         <ion-icon [ngClass]="isLoading ? 'animate-spin h-5 w-5 mr-3' : ''" slot="start"
                   name="{{isLoading ? 'reload-outline' : 'print-outline'}}"></ion-icon>
         Create Pdf
+      </ion-button>
+      <ion-button (click)="createHtmlPdf()" disabled="{{isLoading}}">
+        <ion-icon [ngClass]="isLoading ? 'animate-spin h-5 w-5 mr-3' : ''" slot="start"
+                  name="{{isLoading ? 'reload-outline' : 'print-outline'}}"></ion-icon>
+        Create Pdf [html]
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
