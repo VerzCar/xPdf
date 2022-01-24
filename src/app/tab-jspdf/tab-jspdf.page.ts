@@ -4,11 +4,11 @@ import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
 @Component({
-  selector: 'app-tab1',
-  templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss']
+  selector: 'app-tab-jspdf',
+  templateUrl: 'tab-jspdf.page.html',
+  styleUrls: ['tab-jspdf.page.scss']
 })
-export class Tab1Page {
+export class TabJspdfPage {
 
   @ViewChild('pdfBlock') pdfBlock: ElementRef;
 
@@ -93,6 +93,54 @@ export class Tab1Page {
             jsPdfDoc.save('jsPdf-from-html.pdf');
           },
         });
+
+    } catch (error) {
+      console.error(error);
+    }
+
+    this.isLoading = false;
+  };
+
+  createPdfFromContent(): void {
+    this.isLoading = true;
+
+    const data = [];
+    const columns = ['Full name', 'Application for', 'Email address', 'Salary expectation'];
+
+    data.push({
+      'Full name': 'Margot Foster',
+      'Application for': 'Backend Developer',
+      'Email address': 'margotfoster@example.com',
+      'Salary expectation': '$120.000',
+    });
+
+    try {
+      const doc = new jsPDF({
+        orientation: 'p',
+        unit: 'mm',
+        format: 'a4',
+        putOnlyUsedFonts: true,
+      });
+
+      doc.text(
+        'This shows the specific content that is transformed to a pdf.',
+        5,
+        15,
+      );
+      doc.table(
+        5,
+        25,
+        data,
+        columns,
+        {
+          autoSize: true,
+          printHeaders: true,
+          headerTextColor: '#6B7280',
+          headerBackgroundColor: '#ffffff'
+        }
+      );
+
+      doc.save('jsPdf-from-content.pdf');
 
     } catch (error) {
       console.error(error);

@@ -1,10 +1,10 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="primary">
-      <ion-button (click)="openPDF()" disabled="{{isLoading}}">
+      <ion-button (click)="createPdf()" disabled="{{isLoading}}">
         <ion-icon [ngClass]="isLoading ? 'animate-spin h-5 w-5 mr-3' : ''" slot="start"
                   name="{{isLoading ? 'reload-outline' : 'print-outline'}}"></ion-icon>
-        Create Pdf
+        Create Pdf [html]
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -13,7 +13,7 @@
 <ion-content>
 
   <div id="pdfBlock" #pdfBlock>
-    <app-blueprint-landing-page pageTitle="pdfMake"></app-blueprint-landing-page>
+    <app-blueprint-landing-page pageTitle="browser"></app-blueprint-landing-page>
   </div>
 
 </ion-content>

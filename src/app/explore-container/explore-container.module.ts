@@ -6,10 +6,11 @@ import { IonicModule } from '@ionic/angular';
 
 import { ExploreContainerComponent } from './explore-container.component';
 import { BlueprintLandingPageComponent } from '../blueprint/blueprint-landing-page/blueprint-landing-page.component';
+import { BlueprintPdfContentComponent } from '../blueprint/blueprint-pdf-content/blueprint-pdf-content.component';
 
 @NgModule({
   imports: [ CommonModule, FormsModule, IonicModule],
-    declarations: [ExploreContainerComponent, BlueprintLandingPageComponent],
+    declarations: [ExploreContainerComponent, BlueprintLandingPageComponent, BlueprintPdfContentComponent],
     exports: [ExploreContainerComponent, BlueprintLandingPageComponent]
 })
 export class ExploreContainerComponentModule {}
